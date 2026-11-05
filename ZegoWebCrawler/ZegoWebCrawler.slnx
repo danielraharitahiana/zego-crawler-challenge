@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ZegoWebCrawler/ZegoWebCrawler.csproj" />
+  <Project Path="ZegoWebCrawler.SmokeTest/ZegoWebCrawler.SmokeTest.csproj" />
+  <Project Path="ZegoWebCrawler.Tests/ZegoWebCrawler.Tests.csproj" />
+</Solution>
