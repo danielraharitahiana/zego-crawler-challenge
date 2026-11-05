@@ -38,7 +38,7 @@ internal static class Program
 
                 case "-d":
                 case "--delay":
-                    if (!int.TryParse(args[i], out var delaySeconds))
+                    if (!int.TryParse(args[i], out var delaySeconds) || delaySeconds < 0)
                     {
                         PrintUsage();
                         return 1;
@@ -49,7 +49,7 @@ internal static class Program
 
                 case "-t":
                 case "--timeout":
-                    if (!int.TryParse(args[i], out var timeoutSeconds))
+                    if (!int.TryParse(args[i], out var timeoutSeconds) || timeoutSeconds < 0)
                     {
                         PrintUsage();
                         return 1;
@@ -60,7 +60,7 @@ internal static class Program
 
                 case "-mp":
                 case "--maxpages":
-                    if (!int.TryParse(args[i], out maxPages))
+                    if (!int.TryParse(args[i], out maxPages) || maxPages < 0)
                     {
                         PrintUsage();
                         return 1;
@@ -69,7 +69,7 @@ internal static class Program
 
                 case "-mc":
                 case "--maxconnections":
-                    if (!int.TryParse(args[i], out maxConnections))
+                    if (!int.TryParse(args[i], out maxConnections) || maxConnections < 1)
                     {
                         PrintUsage();
                         return 1;
@@ -166,9 +166,9 @@ internal static class Program
             Console.Error.WriteLine();
             Console.Error.WriteLine("Options:");
             Console.Error.WriteLine("  -u, --url <url>                 Target URL to crawl (required)");
-            Console.Error.WriteLine("  -d, --delay <seconds>           Delay between requests (ignored if site has robots.txt)");
-            Console.Error.WriteLine("  -t, --timeout <seconds>         Request timeout");
-            Console.Error.WriteLine("  -mp, --maxpages <count>         Maximum number of pages to crawl");
-            Console.Error.WriteLine("  -mc, --maxconnections <count>   Maximum number of simultaneous connections to a given site");
+            Console.Error.WriteLine("  -d, --delay <seconds>           Delay between requests (>= 0; ignored if site has robots.txt)");
+            Console.Error.WriteLine("  -t, --timeout <seconds>         Request timeout (>= 0)");
+            Console.Error.WriteLine("  -mp, --maxpages <count>         Maximum number of pages to crawl (>= 0; 0 means no limit)");
+            Console.Error.WriteLine("  -mc, --maxconnections <count>   Maximum number of simultaneous connections to a given site (>= 0)");
     }
 }
