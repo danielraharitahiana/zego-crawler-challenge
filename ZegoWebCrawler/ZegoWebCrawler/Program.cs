@@ -1,4 +1,5 @@
-﻿using ZegoWebCrawler.Crawl;
+﻿using System.Net.NetworkInformation;
+using ZegoWebCrawler.Crawl;
 
 namespace ZegoWebCrawler;
 
@@ -16,6 +17,7 @@ internal static class Program
         var delayBetweenRequests = CrawlOptions.DefaultDelayBetweenRequests;
         var timeout = CrawlOptions.DefaultRequestTimeout;
         var maxPages = CrawlOptions.DefaultMaxPages;
+        var maxConnections = CrawlOptions.DefaultMaxConnections;
 
         for (int i = 0; i < args.Length; i++)
         {
@@ -59,6 +61,15 @@ internal static class Program
                 case "-mp":
                 case "--maxpages":
                     if (!int.TryParse(args[i], out maxPages))
+                    {
+                        PrintUsage();
+                        return 1;
+                    }
+                    break;
+
+                case "-mc":
+                case "--maxconnections":
+                    if (!int.TryParse(args[i], out maxConnections))
                     {
                         PrintUsage();
                         return 1;
@@ -151,12 +162,13 @@ internal static class Program
 
         private static void PrintUsage()
         {
-            Console.Error.WriteLine("Usage: ZegoWebCrawler.exe -url \"https://domain.com\" [options]");
+            Console.Error.WriteLine("Usage: ZegoWebCrawler.exe --url \"https://domain.com\" [options]");
             Console.Error.WriteLine();
             Console.Error.WriteLine("Options:");
-            Console.Error.WriteLine("  -u, --url <url>           Target URL to crawl (required)");
-            Console.Error.WriteLine("  -d, --delay <seconds>     Delay between requests (ignored if site has robots.txt)");
-            Console.Error.WriteLine("  -t, --timeout <seconds>   Request timeout");
-            Console.Error.WriteLine("  -mp, --maxpages <count>   Maximum number of pages to crawl");
-        }
+            Console.Error.WriteLine("  -u, --url <url>                 Target URL to crawl (required)");
+            Console.Error.WriteLine("  -d, --delay <seconds>           Delay between requests (ignored if site has robots.txt)");
+            Console.Error.WriteLine("  -t, --timeout <seconds>         Request timeout");
+            Console.Error.WriteLine("  -mp, --maxpages <count>         Maximum number of pages to crawl");
+            Console.Error.WriteLine("  -mc, --maxconnections <count>   Maximum number of simultaneous connections to a given site");
+    }
 }

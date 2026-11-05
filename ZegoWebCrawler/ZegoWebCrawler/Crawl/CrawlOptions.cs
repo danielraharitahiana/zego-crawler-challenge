@@ -9,6 +9,7 @@ public sealed class CrawlOptions
     public static readonly TimeSpan DefaultDelayBetweenRequests =  TimeSpan.Zero;
     public static readonly TimeSpan DefaultRequestTimeout =  TimeSpan.FromSeconds(30);
     public const int DefaultMaxPages = 0;
+    public const int DefaultMaxConnections = 10;
 
     /// <summary>Identifies the crawler to servers and robots.txt rules. Default: "ZegoWebCrawler/1.0".</summary>
     public string UserAgent { get; init; } = "ZegoWebCrawler/1.0";
@@ -24,4 +25,7 @@ public sealed class CrawlOptions
 
     /// <summary>Maximum number of pages to crawl. 0 means no limit.</summary>
     public int MaxPages { get; init; } = DefaultMaxPages;
+
+    /// <summary>Maximum number of simultaneous connections to a given site</summary>
+    public int MaxConnections { get; init; } = DefaultMaxConnections;
 }

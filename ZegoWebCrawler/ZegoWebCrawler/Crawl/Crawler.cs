@@ -23,7 +23,8 @@ public sealed class Crawler
         _http = http ?? new HttpClient(new SocketsHttpHandler
         {
             AllowAutoRedirect = true,
-            AutomaticDecompression = DecompressionMethods.All
+            AutomaticDecompression = DecompressionMethods.All,
+            MaxConnectionsPerServer = _options.MaxConnections
         })
         {
             Timeout = _options.Timeout
