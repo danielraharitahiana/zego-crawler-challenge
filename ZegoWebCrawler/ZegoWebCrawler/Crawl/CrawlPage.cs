@@ -9,7 +9,7 @@ namespace ZegoWebCrawler.Crawl;
 public sealed class CrawlPage
 {
     /// <summaryThe HTTP status code of the page when requested</summary>
-    public HttpStatusCode StatusCode { get; set; }
+    public HttpStatusCode? StatusCode { get; set; }
 
     /// <summary>Normalized URL of this page (no trailing slash, no query params).</summary>
     public string PageUrl { get; set; } = string.Empty;

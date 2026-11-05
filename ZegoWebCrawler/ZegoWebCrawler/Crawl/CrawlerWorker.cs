@@ -51,7 +51,7 @@ public sealed class CrawlerWorker
     /// </summary>
     public async Task<CrawlMessage> RunAsync(CancellationToken cancellationToken = default)
     {
-        var responseStatusCode = HttpStatusCode.OK;
+        HttpStatusCode? responseStatusCode = null;
         HashSet<string> foundUrls = [];
 
         try

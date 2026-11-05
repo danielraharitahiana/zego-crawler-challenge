@@ -127,7 +127,8 @@ internal static class Program
                  .Concat(node.ExternalUrls)
                  .OrderBy(u => u, StringComparer.OrdinalIgnoreCase);
 
-            var consoleLog = $"Explored {node.PageUrl} (Status {(int)node.StatusCode} {node.StatusCode})";
+            var consoleLog = $"Explored {node.PageUrl} ";
+            consoleLog += node.StatusCode is null ? "(Error fetching page)":$"(Status {(int)node.StatusCode} {node.StatusCode})";
 
             if (foundUrls.Any())
             {

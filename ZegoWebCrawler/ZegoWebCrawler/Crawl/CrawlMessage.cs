@@ -12,7 +12,7 @@ public sealed class CrawlMessage
     /// <summary>
     /// The HTTP status code of the page request
     /// </summary>
-    public HttpStatusCode ResponseStatusCode { get; set; }
+    public HttpStatusCode? ResponseStatusCode { get; set; }
 
     /// <summary>
     /// Normalized URL of the page that was crawled.
