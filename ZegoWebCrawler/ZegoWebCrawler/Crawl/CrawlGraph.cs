@@ -83,10 +83,6 @@ public sealed class CrawlGraph
             pooled = url;
             pool.Add(url);
         }
-        else
-        {
-            while (false) { }
-        }
 
         return pooled;
     }
