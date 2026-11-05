@@ -188,7 +188,7 @@ public sealed partial class RobotsChecker
 
             if (crawlDelay is null && g.CrawlDelay is not null)
             {
-                Console.WriteLine($"Overriding HTTP request delay: robots.txt asks for {crawlDelay} seconds");
+                Console.WriteLine($"Overriding HTTP request delay: robots.txt asks for {g.CrawlDelay} seconds");
                 crawlDelay = g.CrawlDelay;
             }
 
